@@ -12,8 +12,8 @@ const Forgot = () => {
                 <AppBar  sx={{background:'#1746A2'}}>
                 <Toolbar sx={{ width:{xl:"100%",lg:"100%",md:"100%",sm:"100%",xs:"100%"}, height:'80px'}} >
                 <Typography sx={{ width:{xl:"80px",lg:"80px",md:"80px",sm:"80px",xs:"60px"},height:{xl:"80px",lg:"80px",md:"80px",sm:"80px",xs:"65px"},marginTop:'40px'}}><img src="../images/Logo.svg" alt="logo"  /></Typography>
-                <Typography sx={{marginLeft:{xl:"80%",lg:"80%",md:"70%",sm:"55%",xs:"55%"}}}><HouseIcon sx={{width:'40px', height:'31.85px',marginTop:'10px' }}></HouseIcon></Typography>
-                <Link sx={{color:'#FFFFFF',marginTop:'4px', marginLeft:{xl:"0%",lg:"0%",md:"0%",sm:"0%",xs:""},fontSize:'24px', fontWeight:'500',textDecoration:'none' }}>Home</Link>
+                <Typography sx={{marginLeft:{xl:"80%",lg:"80%",md:"70%",sm:"70%",xs:"65%"}}}><HouseIcon sx={{width:'40px', height:'31.85px',marginTop:'10px' }}></HouseIcon></Typography>
+                <Link sx={{color:'#FFFFFF',marginTop:'4px', marginLeft:{xl:"0%",lg:"0%",md:"0%",sm:"0%",xs:""},fontSize:'24px', fontWeight:'500',textDecoration:'none', visibility:{xl:'visible', lg:'visible', md:'visible', sm:'hidden', xs:'hidden'} }}>Home</Link>
                 </Toolbar>
             </AppBar>
             </Box>
