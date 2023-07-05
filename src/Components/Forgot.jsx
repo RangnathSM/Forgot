@@ -4,7 +4,29 @@ import { AppBar, Toolbar, Typography,Link, TextField } from "@mui/material";
 import { Box } from '@mui/system';
 import HouseIcon from '@mui/icons-material/House';
 import { Button } from "@mui/material";
+import { useState } from 'react';
 const Forgot = () => {
+
+    let [email, setEmail] = useState()
+    let [error, setError] = useState(false)
+
+    let handleEmail = (e) => {
+        setEmail(e.target.value);
+      };
+    
+      const handleSend = () => {
+        if (validateEmail(email)) {
+          console.log('Sending email:', email);
+        } else {
+          setError(true);
+        }
+      };
+
+      let validateEmail = (email) => {
+        let emailType = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailType.test(email);
+      };
+
     return ( 
          
            <Box width='100%'>
@@ -23,12 +45,12 @@ const Forgot = () => {
             <Box marginTop='40px'>
                 <Typography sx={{color:'#1746A2', fontSize:{xl:"40px",lg:"40px",md:"30px",sm:"25px",xs:"25px"}, fontWeight:'600' }}>Forgot Password</Typography>
                 <Typography sx={{width:{xl:"490px",lg:"490px",md:"490px",sm:"490px",xs:"400px"}, height:'84px',fontSize:{xl:"28px",lg:"28px",md:"25px",sm:"23px",xs:"22px"} ,fontWeight:'500', marginLeft:{xl:"252px",lg:"252px",md:"110px",sm:"5px",xs:"15px"},marginTop:'30px'}}>Please Enter your Email address To Receive a verification code </Typography>
-                <form>
+                <form >
                     <Box marginTop={{xl:"40px",lg:"40px",md:"20px",sm:"10px",xs:"10px"}}>
                         <Typography sx={{color:'#1746A2', fontSixe:'20px', fontWeight:'400',marginLeft:{xl:"-410px",lg:"-410px",md:"-340px",sm:"-330px",xs:"-310px"}}}><label>Email</label></Typography>
-                        <TextField sx={{border:' 1px solid #7E7E7E', width:{xl:"460px",lg:"460px",md:"400px",sm:"380px",xs:"360px"}, height:{xl:"56px",lg:"56px",md:"56px",sm:"56px",xs:"56px"}, borderRadius:'8px', background:'#F3F6FA', marginLeft:{xl:"0",lg:"0",md:"20px",sm:"5px",xs:"3px"}}}></TextField>
+                        <TextField value={email} onChange={handleEmail} error={error} helperText={error ? 'Please enter a valid email' : ''} sx={{border:' 1px solid #7E7E7E', width:{xl:"460px",lg:"460px",md:"400px",sm:"380px",xs:"360px"}, height:{xl:"56px",lg:"56px",md:"56px",sm:"56px",xs:"56px"}, borderRadius:'8px', background:'#F3F6FA', marginLeft:{xl:"0",lg:"0",md:"20px",sm:"5px",xs:"3px"}}}></TextField>
                     </Box>
-                    <Button  sx={{border:"none", marginTop:{xl:"80px",lg:"80px",md:"40px",sm:"40px",xs:"10%"},  background:"#1746A2", padding:"12px 20px", width:{xl:"300px",lg:"300px",md:"300px",sm:"300px",xs:"250px"}, height:'60px', boxShadow:"2px 2px 8px -2px rgba(0, 79, 149, 0.1)", color:"white",borderRadius:'40px', textTransform: "none", fontSize:{xl:"20px",lg:"20px",md:"20px",sm:"20px",xs:"18px"}, fontWeight:"600" }} type="submit"  variant="contained"  >Send</Button>
+                    <Button onClick={handleSend} sx={{border:"none", marginTop:{xl:"80px",lg:"80px",md:"40px",sm:"40px",xs:"10%"},  background:"#1746A2", padding:"12px 20px", width:{xl:"300px",lg:"300px",md:"300px",sm:"300px",xs:"250px"}, height:'60px', boxShadow:"2px 2px 8px -2px rgba(0, 79, 149, 0.1)", color:"white",borderRadius:'40px', textTransform: "none", fontSize:{xl:"20px",lg:"20px",md:"20px",sm:"20px",xs:"18px"}, fontWeight:"600" }} type="submit"  variant="contained"  >Send</Button>
                 </form>
                 <Typography sx={{color:'#008D6F',fontSize:{xl:"20px",lg:"20px",md:"18px",sm:"14px",xs:"13px"}, fontWeight:'500', marginTop:'40px'}}>“Password Reset link has been Send to your Registered email ID”</Typography>
             </Box>
