@@ -12,6 +12,7 @@ const Forgot = () => {
     let [successMessage, setSuccessMessage] = useState('');
     let [errorMessage, setErrorMessage] = useState('');
     
+    
 
     let handleEmail = (e) => {
         setEmail(e.target.value);
@@ -34,12 +35,12 @@ const Forgot = () => {
                 setSuccessMessage('“Password Reset link has been Send to your Registered email ID”');
               } else {
                 setSuccessMessage('');
-                setErrorMessage('“Email Not Found”');
+                setErrorMessage(responseData.message || '“Email Not Found”');
               }
             } else {
               let responseData = await response.json();
               setSuccessMessage('');
-              setErrorMessage('Reset Password Exceed Limit' || responseData );
+              setErrorMessage(responseData.error || "Reset Password Limit exceeded" );
             }
         } else {
           setError(true);
@@ -74,12 +75,12 @@ const Forgot = () => {
                 <form >
                     <Box marginTop={{xl:"40px",lg:"40px",md:"20px",sm:"10px",xs:"10px"}}>
                         <Typography sx={{color:'#1746A2', fontSixe:'20px', fontWeight:'400',marginLeft:{xl:"-410px",lg:"-410px",md:"-340px",sm:"-330px",xs:"-310px"}}}><label>Email</label></Typography>
-                        <TextField value={email} type='email' required onChange={handleEmail} error={error} sx={{border:' 1px solid #7E7E7E', width:{xl:"460px",lg:"460px",md:"400px",sm:"380px",xs:"360px"}, height:{xl:"56px",lg:"56px",md:"56px",sm:"56px",xs:"56px"}, borderRadius:'8px', background:'#F3F6FA', marginLeft:{xl:"0",lg:"0",md:"20px",sm:"5px",xs:"3px"}}}><input required></input></TextField>
-                        {errorMessage && <h3 style={{ color: 'red',fontSize:{xl:"20px",lg:"20px",md:"18px",sm:"14px",xs:"13px"}, fontWeight:'500',  }}>{errorMessage}</h3>}
-                        {successMessage && <h3 style={{ color: 'green',fontSize:{xl:"20px",lg:"20px",md:"18px",sm:"14px",xs:"13px"}, fontWeight:'500',  }}>{successMessage}</h3>}
+                        <TextField  value={email} type='email' required onChange={handleEmail} error={error} sx={{border:' 1px solid #7E7E7E', width:{xl:"460px",lg:"460px",md:"400px",sm:"380px",xs:"360px"}, height:{xl:"56px",lg:"56px",md:"56px",sm:"56px",xs:"56px"}, borderRadius:'8px', background:'#F3F6FA', marginLeft:{xl:"0",lg:"0",md:"20px",sm:"5px",xs:"3px"}}}><input required></input></TextField>
+                        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+                        {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
                     </Box>
                     <Box>
-                        <Button onClick={handleSend} sx={{border:"none", marginTop:{xl:"80px",lg:"80px",md:"40px",sm:"40px",xs:"10%"},   background:"#1746A2", padding:"12px 20px", width:{xl:"300px",lg:"300px",md:"300px",sm:"300px",xs:"250px"}, height:'60px', boxShadow:"2px 2px 8px -2px rgba(0, 79, 149, 0.1)", color:"white",borderRadius:'40px', textTransform: "none", fontSize:{xl:"20px",lg:"20px",md:"20px",sm:"20px",xs:"18px"}, fontWeight:"600" }} type="submit"  variant="contained"  >Send</Button>
+                        <Button onClick={handleSend} sx={{border:"none", marginTop: {xl: errorMessage || successMessage ? "calc(80px - 21px)" : "80px", lg:errorMessage || successMessage ? "calc(80px - 21px)" : "80px", md:errorMessage || successMessage ? "calc(80px - 21px)" : "80px",sm: errorMessage || successMessage ? "calc(80px - 21px)" : "80px",xs:errorMessage || successMessage ? "calc(80px - 21px)"  : "80px", }, background:"#1746A2", padding:"12px 20px", width:{xl:"300px",lg:"300px",md:"300px",sm:"300px",xs:"250px"}, height:'60px', boxShadow:"2px 2px 8px -2px rgba(0, 79, 149, 0.1)", color:"white",borderRadius:'40px', textTransform: "none", fontSize:{xl:"20px",lg:"20px",md:"20px",sm:"20px",xs:"18px"}, fontWeight:"600" }} type="submit"  variant="contained"  >Send</Button>
                         </Box>
                 </form>
             </Box>
